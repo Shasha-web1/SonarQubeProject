@@ -20,9 +20,6 @@ public class Calculator {
     }
 
     public double multiply(double a, double b) {
-        double x = a;
-        double y = b;
-        
         last = a * b; 
         
         return last;
