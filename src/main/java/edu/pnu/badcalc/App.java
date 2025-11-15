@@ -14,7 +14,6 @@ public class App {
         LOGGER.info("Bad Calculator v0.0.1");
 
         while (true) {
-            // Replaced System.out.print("> ") with logger info
             LOGGER.info("> "); 
             
             String line = s.nextLine();
@@ -24,12 +23,11 @@ public class App {
             }
 
             try {
-                // Replaced System.out.println("= " + ...) with logger info
-                LOGGER.info("= " + c.parseAndCompute(line));
+                // FIX: Use LOGGER.log with a lambda to defer the expensive call
+                // c.parseAndCompute(line) and the string concatenation
+                LOGGER.log(Level.INFO, () -> "= " + c.parseAndCompute(line));
             } catch (Exception e) {
-                // Lambda used to defer string concatenation (L28 fix)
                 LOGGER.log(Level.SEVERE, e, () -> "Calculation error occurred for input: " + line);
-                // Replaced System.out.println("err") with logger warning (L29 fix)
                 LOGGER.log(Level.WARNING, "err");
             }
         }
